@@ -1,0 +1,124 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=2cm]{geometry}
+
+\title{Umbrales}
+\author{Grupo 2}
+\date{Mayo 2020 - DSP}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Se empieza por analizar cada uno de los bloques que conforma una malla de fase encadenada (PLL). Luego se observa su uso a la hora de demodular una señal FM. 
+\end{abstract}
+
+
+\subsection{Marco teórico}
+\subsubsection{Detector de fase}
+Un detector de fase es un mezclador optimizado para usarse con frecuencias de entrada iguales. También se lo denomina detector de fase, dado que la cantidad de voltaje de CD depende del ángulo de fase $\phi$ entre las señales de entrada.
+
+Se muestra la función del detector de fase a partir de dos señales senoidales en la Fig. \ref{def1}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{%Rutadelaimagen%def1.png}
+    \caption{Funciones de entrada y diagrama en bloque.}
+    \label{def1}
+\end{figure}
+
+Cuando el ángulo de fase $\phi=0$, el voltaje de CD es máximo. A medida que el ángulo de fase se incrementa de 0$\textordmasculine$ a 180$\textordmasculine$, el voltaje de cd decrece a su valor mínimo. Cuando $\phi=90\textordmasculine$, la salida de CD es el promedio entre la salida máxima y mínima. Una grafica de la función a la salida se muestra en la Fig. \ref{def2}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{%Rutadelaimagen%def2.png}
+    \caption{Salida del detector de fase}
+    \label{def2}
+\end{figure}
+
+\subsubsection{Oscilador controlado por voltaje (VCO)}
+En un VCO, un voltaje de CD de entrada controla la frecuencia de salida, como se muestra en la Fig. \ref{vco1}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{%Rutadelaimagen%vco1.png}
+    \caption{Diagrama en bloque del VCO.}
+    \label{vco1}
+\end{figure}
+
+Un voltaje de CD controla la frecuencia del oscilador. Típicamente la frecuencia decrece en forma lineal con un incremento en el voltaje de CD, como se muestra en la Fig. \ref{}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{%Rutadelaimagen%vco2.png}
+    \caption{Relación voltaje de CD y frecuencia de salida.}
+    \label{vco2}
+\end{figure}
+
+\subsubsection{Malla de fase encadenada (PLL)}
+En un PLL \emph{(phase-locked-loop)}; son entradas al detector de fase una señal con frecuencia $f_x$, y otra proveniente de un VCO. La señal de salida del detector pasa por un filtro pasabajos, que remueve las frecuencias originales, sus armónicas y la frecuencia suma. Por lo tanto queda la frecuencia diferencia (voltaje de CD) a la salida del filtro. Este voltaje de CD controla la frecuencia del VCO. En la Fig. \ref{pll1} se muestra el diagrama en bloque del PLL.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{%Rutadelaimagen%pll1.png}
+    \caption{Diagrama en bloque del PLL.}
+    \label{pll1}
+\end{figure}
+%%
+El sistema realimentado “engancha” la frecuencia del VCO a la frecuencia de entrada. Cuando el sistema trabaja de manera correcta, la frecuencia a la salida del VCO es igual a $f_x$, igual a la señal de entrada. Por lo tanto, el 
+detector de fase tiene dos entradas con frecuencias iguales; el ángulo de fase entre estas entradas determina la cantidad de voltaje de cd de salida. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{%Rutadelaimagen%pll2.png}
+    \caption{Fasores de la señal de entrada y VCO.}
+    \label{pll2}
+\end{figure}
+
+Los fasores para la señal de entrada y la del VCO se muestran en la Fig. \ref{pll2}. Si la frecuencia de entrada cambia, la frecuencia del VCO la seguirá. 
+
+Por ejemplo, si la frecuencia de entrada $f_x$ se incrementa, su fasor gira más rápido y el ángulo de fase aumenta. Esto significa que saldrá menos voltaje de cd en la salida del detector de fase. El voltaje de cd más bajo forzara a que la frecuencia del VCO se incremente hasta que se iguala a la frecuencia de entrada.
+
+Por otro lado, si la frecuencia de entrada decrece, su fasor disminuye su velocidad de giro y el ángulo de fase decrece. Se tiene más voltaje de cd a la salida del detector de fase, lo cual causa que la frecuencia del VCO disminuya hasta que se iguala a la frecuencia de entrada.
+
+\subsubsection{Intervalo de enganche}
+El intervalo de enganche $B_L$ es el intervalo de frecuencias que el VCO puede producir, dado por 
+
+\begin{equation}\label{bl}
+B_L = f_{máx} – f_{mín} 
+\end{equation}
+
+Donde $f_{máx}$ y $f_{mín}$ son las frecuencias máxima y mínima del VCO.
+Cuando $f_x$ se encuentra dentro de este intervalo, el VCO seguirá esta frecuencia de entrada y la frecuencia de salida será igual a $f_x$.
+
+\subsubsection{Funcionamiento libre}
+Si la señal de entrada se desconecta, el VCO oscila en modo de funcionamiento libre a una frecuencia que determinan las componentes del circuito. 
+
+\subsubsection{Captura y enganche}
+Si la PLL esta en funcionamiento libre, esta se 
+puede enganchar a la frecuencia de entrada cuando la frecuencia de entrada cae dentro del intervalo de captura $B_C$, una banda de frecuencias centrada alrededor de la frecuencia de funcionamiento libre; dado por.
+
+\begin{equation}\label{bc}
+B_C = f_{2} – f_{1} 
+\end{equation}
+
+Donde $f_{1}$ y $f_{2}$ son las frecuencias entre las que el PLL se puede enganchar. Este intervalo siempre es menor o igual al intervalo de enganche y esta relacionado con la frecuencia de corte del filtro pasa-bajo. Mientras la frecuencia de corte es más baja, el intervalo de captura es más pequeño.
+
+\subsubsection{Salida de FM}
+La Fig. \ref{sal} muestra un simple modulador de FM, compuesto por un oscilador LC con un capacitor de sintonización variable. Al variar la capacitancia, la frecuencia de oscilación cambia.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{%Rutadelaimagen%sal.png}
+    \caption{Diagrama en bloque modulador de FM.}
+    \label{sal}
+\end{figure}
+
+Cuando una señal de FM es la entrada de una PLL, el VCO seguirá la frecuencia de entrada a medida que este cambie. Como resultado, se tiene un voltaje variable a la salida del filtro. Este voltaje tiene la misma frecuencia que la señal 
+moduladora. 
+En resumen la salida de CD representa una salida de FM demodulada.
+
+\end{document}
