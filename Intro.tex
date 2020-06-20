@@ -11,8 +11,8 @@
 \usepackage[usenames]{color}
 
 \begin{document}
-\title{Laboratorio 2}
-\author{\IEEEauthorblockN{Nombre\IEEEauthorrefmark{2}$^1$ y G. Millain\IEEEauthorrefmark{2}$^2$\vspace{0.2cm}}\IEEEauthorblockA{\IEEEauthorrefmark{2}\emph{Facultad de Ingeniería, Universidad Nacional del Comahue}\\\emph{Buenos Aires 1400, 8300 Neuquén}}\IEEEauthorblockA{$^1$\texttt{\small{mail}}\\$^2$\texttt{\small{gonza.pm@outlook.com}}}}
+\title{Laboratorio 2: Malla de fase encadenada}
+\author{\IEEEauthorblockN{Gatica, Isaias\IEEEauthorrefmark{2}$^1$; Saez, Lautaro\IEEEauthorrefmark{2}$^2$ y Millain, Gonzalo\IEEEauthorrefmark{2}$^3$\vspace{0.2cm}}\IEEEauthorblockA{\IEEEauthorrefmark{2}\emph{Facultad de Ingeniería, Universidad Nacional del Comahue}\\\emph{Buenos Aires 1400, 8300 Neuquén}}\IEEEauthorblockA{$^1$\texttt{\small{isaiasgatica1@gmail.com}}\\$^2$\texttt{\small{lautaroandressaez@gmail.com}}\\$^3$\texttt{\small{gonza.pmc@gmail.com}}}}
 
 \maketitle
 
@@ -145,8 +145,8 @@
         \caption{Circuito PLL}
         \label{circuito}
     \end{figure}
-Se desconecta la señal de entrada $Vin$ con el fin de medir la frecuencia de operación libre
-del PLL. Para esto se hace uso de la herramiento ``FFT'' y se encuentra la frecuencia correspondiente al nodo $clk1$. Dando como resultado que la 
+Se desconecta la señal de entrada $V_{in}$ con el fin de medir la frecuencia de operación libre
+del PLL. Para esto se hace uso de la herramienta \emph{FFT} y se encuentra la frecuencia correspondiente al nodo $clk_1$. Dando como resultado que la 
 frecuencia de operacion libre es de aproximadamente $980Hz$ para $R1=10K$ y $C1=100n$. El resultado mencionado se observa 
 en la figura \ref{Flibre}:
 \begin{figure}[H]
@@ -155,7 +155,7 @@ en la figura \ref{Flibre}:
     \caption{FFT de la señal salida de VCO, evidenciando la frecuencia de operación libre}
     \label{Flibre}
 \end{figure}
-El siguiente paso es realizar un barrido de valores para resistencia $R1$ y ver la variabilidad de la frecuencia libre del PLL. Nuevamente 
+El siguiente paso es realizar un barrido de valores para la resistencia $R1$ y ver la variabilidad de la frecuencia libre del PLL. Nuevamente 
 hacemos uso de la FFT y vemos el resultado obtenido en la figura \ref{RBarrido}:
 \begin{figure}[H]
     \centering
@@ -163,16 +163,16 @@ hacemos uso de la FFT y vemos el resultado obtenido en la figura \ref{RBarrido}:
     \caption{Frecuencia de operación libre para 20 distintos valores de $R1$}
     \label{RBarrido}
 \end{figure}
-Se observa que para un rango de valores de $R1$ que parte de $2,5K$ hasta $50K$ con paso de $2,5K$ se obtienen frecuencia de operación libre 
-muy cercanas a $1Khz$ y la tendencia es creciente. Con estos valores se calcula el $\tau$ del filtro pasa bajos formado por 
+Se observa que para un rango de valores de $R1$ que parte de $2,5K$ hasta $50K$ con paso de $2,5K$ se obtienen frecuencias de operación libre 
+muy cercanas a $1KHz$ y la tendencia es creciente. Con estos valores se calcula el $\tau$ del filtro pasa bajos formado por 
 $R1$ y $C1$, registrado en la Tabla \ref{TablaTau}. Se deduce que aumentar la resistencia dejando fijo el valor de $C1$ genera un aumento 
 en la frecuencia libre pero tambien en el tiempo que requiere el sistema para engancharse ($\tau$).\\
 %AGREGAR TABLA
 Con el fin de obtener a la salida del $VCO$, denotado con $A3$ en la figura \ref{circuito}, una frecuencia de $8Khz$ y por lo tanto en el nodo 
-$clk1$ una frecuencia de $1Khz$ (ya que los tres flip flop generan un divisor por 8) se inspecciona la figura \ref{RBarrido}. Vemos que para 
-una resistencia de $50K$ la frecuencia libre es igual a $1Khz$ que es lo requerido, por lo tanto a partir de ahora el valor de $R1=50K$.\\
-Calculada la frecuencia libre del sistema y viendo como esta varia con $R1$ lo siguiente es analizar el funcionamiento del PPL, para esto conectamos 
-la fuente $Vin$ a la XOR y variamos su frecuencia en un rango alrededor de $1Khz$ (frecuencia libre) con el fin de encontrar de forma empírica el rango
+$clk_1$ una frecuencia de $1Khz$ (ya que los tres flip flop generan un divisor por 8) se inspecciona la figura \ref{RBarrido}. Vemos que para 
+una resistencia de $50K$ la frecuencia libre es igual a $1KHz$ que es lo requerido, por lo tanto a partir de ahora el valor de $R1=50K$.\\
+Calculada la frecuencia libre del sistema y viendo como esta varia con $R1$ lo siguiente es analizar el funcionamiento del PLL, para esto conectamos 
+la fuente $V_{in}$ a la XOR y variamos su frecuencia en un rango alrededor de $1Khz$ (frecuencia libre) con el fin de encontrar de forma empírica el rango
 de frecuencias para el cual el PLL se engancha. Es decir, el rango de frecuencia que el circuito puede seguir a la señal de entrada. Los resultados obtenidos siguiendo estos 
 pasos son:
 \begin{itemize}
@@ -180,41 +180,41 @@ pasos son:
     \begin{figure}[H]
         \centering
         \includegraphics[width=.45\textwidth]{Fig/Engancheinferior}
-        \caption{Verde:Señal de entrada de $790Hz$. Azul:Señal de enganche del PLL de $793Hz$ (nodo $clk1$)}
+        \caption{Verde:Señal de entrada de $790Hz$. Azul:Señal de enganche del PLL de $793Hz$ (nodo $clk_1$)}
         \label{Einf}
     \end{figure}
     \item Frecuencia media de enganche $F_{Emed}=1KHz$
     \begin{figure}[H]
         \centering
         \includegraphics[width=.45\textwidth]{Fig/EngancheMedio}
-        \caption{Verde:Señal de entrada de $1KHz$. Azul:Señal de enganche del PLL de $1KHz$ (nodo $clk1$)}
+        \caption{Verde:Señal de entrada de $1KHz$. Azul:Señal de enganche del PLL de $1KHz$ (nodo $clk_1$)}
         \label{Emed}
     \end{figure} 
     \item Frecuencia superior de enganche $F_{Esup}=1,2KHz$
     \begin{figure}[H]
         \centering
         \includegraphics[width=.45\textwidth]{Fig/EngancheSuperior}
-        \caption{Verde:Señal de entrada de $1,2KHz$. Azul:Señal de enganche del PLL de $1,2KHz$ (nodo $clk1$)}
+        \caption{Verde:Señal de entrada de $1,2KHz$. Azul:Señal de enganche del PLL de $1,2KHz$ (nodo $clk_1$)}
         \label{Esup}
     \end{figure}
 \end{itemize}  
 Como vemos en las figuras \ref{Einf}, \ref{Emed} y \ref{Esup} para un rango de frecuencias $[790Hz,1,2KHz]$ la señal de salida del VCO 
 sigue de manera precisa a la señal de entrada (replicando su frecuencia). Por otro lado, en las figuras \ref{NEinf} y \ref{NEsup} vemos que para frecuencias de señal
-de entrada de $500Hz$ y $1,5KHz$, respectivamente, el PPL es incapaz de engancharse.
+de entrada de $500Hz$ y $1,5KHz$, respectivamente, el PLL es incapaz de engancharse.
 \begin{figure}[H]
     \centering
     \includegraphics[width=.45\textwidth]{Fig/NoEnganche500}
-    \caption{Verde:Señal de entrada de $500Hz$. Azul:Señal de enganche del PLL de $1KHz$ (nodo $clk1$)}
+    \caption{Verde:Señal de entrada de $500Hz$. Azul:Señal de enganche del PLL de $1KHz$ (nodo $clk_1$)}
     \label{NEinf}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=.45\textwidth]{Fig/NoEnganche1500}
-    \caption{Verde:Señal de entrada de $1,5Hz$. Azul:Señal de enganche del PLL de $1KHz$ (nodo $clk1$)}
+    \caption{Verde:Señal de entrada de $1,5Hz$. Azul:Señal de enganche del PLL de $1KHz$ (nodo $clk_1$)}
     \label{NEsup}
 \end{figure}
-Al haber analizado el rangos de frecuencias de enganche del PLL para los valores $R1=50K$ y $C1=100nF$ surge la posibilidad de variar el valor del capacitor 
-y ver como ésto influye en el rango de frecuencias de enganche. Para realizar esto se eligieron de forma arbitraria 3 valores de capacitores y se repitió el procedimiento anterior 
+Al haber analizado el rango de frecuencias de enganche del PLL para los valores $R1=50K$ y $C1=100nF$ surge la posibilidad de variar el valor del capacitor 
+y ver como éste influye en el rango de frecuencias de enganche. Para realizar esto se eligieron de forma arbitraria 3 valores de capacitores y se repitió el procedimiento anterior 
 para encontrar el rango de frecuencias que el PLL sigue de forma correcta. Dando como resultado:
 \begin{itemize}
     \item $C1=1nF$ $\rightarrow$ Rango de frecuencias de enganche igual a $[50Hz,1850Hz]$
@@ -224,8 +224,8 @@ para encontrar el rango de frecuencias que el PLL sigue de forma correcta. Dando
 Vemos que el rango de frecuencia tiene una relación directa con el valor del capacitor.  Al aumentar la capacitancia el rango de 
 engache se acota demasiado, y en cambio al disminuirla el rango de frecuencias de enganche aumenta. Siempre manteniendo fijo el 
 valor de la resistencia en $50K$. Este resultado y el obtenido anteriormente al variar el valor de $R1$ nos indica lo sensible que es el circuito 
-a cambios en los parametros del filtro pasa bajo, es decir que para realizar un control óptimo del PLL es fundamental analizar el valor de $\tau$ y 
-ajustarlo segun el requerimiento y teniendo en cuenta como el valor $\tau$ modifica el tiempo que tarda el circuito en engancharse.\\
+a cambios en los parametros del filtro pasa bajo. Por lo tanto, para realizar un control óptimo del PLL es fundamental analizar el valor de $\tau$ y 
+ajustarlo segun el requerimiento, teniendo en cuenta como el valor $\tau$ modifica el tiempo que tarda el circuito en engancharse.\\
 
 Por último, cambiamos la señal de entrada a nuestro circuito por una señal FM de portadora $1KHz$, con $\Delta f=300Hz$ y probando con 3 valores de señal 
 moduladora: $F_m=10Hz$,$F_m=30Hz$ y $F_m=50Hz$. Al medir la señal en el nodo $Vc$ deberiamos obtener una frecuencia que coincida con la frecuencia de la moduladora, es decir 
