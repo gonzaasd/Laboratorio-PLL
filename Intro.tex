@@ -167,7 +167,19 @@ Se observa que para un rango de valores de $R1$ que parte de $2,5K$ hasta $50K$ 
 muy cercanas a $1KHz$ y la tendencia es creciente. Con estos valores se calcula el $\tau$ del filtro pasa bajos formado por 
 $R1$ y $C1$, registrado en la Tabla \ref{TablaTau}. Se deduce que aumentar la resistencia dejando fijo el valor de $C1$ genera un aumento 
 en la frecuencia libre pero tambien en el tiempo que requiere el sistema para engancharse ($\tau$).\\
-%AGREGAR TABLA
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+$C (nF)$ & \multicolumn{5}{c|}{100} \ \hline
+$R (k\Omega)$ & 2.5 & 5 & 10 & 25 & 50 \ \hline
+$\tau (ms)$ & 0.25 & 0.5 & 1 & 2.5 & 5 \ \hline
+\end{tabular}
+\caption{Valores de $\tau$.}
+\label{TablaTau}
+\end{table}
+
 Con el fin de obtener a la salida del $VCO$, denotado con $A3$ en la figura \ref{circuito}, una frecuencia de $8Khz$ y por lo tanto en el nodo 
 $clk_1$ una frecuencia de $1Khz$ (ya que los tres flip flop generan un divisor por 8) se inspecciona la figura \ref{RBarrido}. Vemos que para 
 una resistencia de $50K$ la frecuencia libre es igual a $1KHz$ que es lo requerido, por lo tanto a partir de ahora el valor de $R1=50K$.\\
